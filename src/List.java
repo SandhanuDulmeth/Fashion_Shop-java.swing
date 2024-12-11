@@ -1,5 +1,7 @@
-import java.util.*;
-class List{
+import java.io.IOException;
+import java.util.Arrays;
+
+class List {
     private Node start;
 
     public boolean add(Customer customer){ //add to the last(Insertion order)->(add  of Queue)
@@ -171,8 +173,31 @@ class List{
             tempCustomerArray[i]=temp.customer;
             temp=temp.next;
         }
+        loadFromFile();
         return tempCustomerArray;
     }
+
+    public Customer[] loadFromFile() {
+        Customer[] customers = null;
+        try {
+            customers = CustomerController.getAllCustomersFromFile(); // Fetch customers from the file
+            if (customers != null) {
+                for (Customer customer : customers) {
+                    this.add(customer); // Add each customer to the linked list
+                }
+                System.out.println("Customers loaded successfully from the file.");
+            } else {
+                System.out.println("No customers found in the file.");
+            }
+        } catch (IOException e) {
+            System.out.println("Error loading customer data: " + e.getMessage());
+        }
+        return customers;
+    }
+
+
+
+
     class Node{
         private Customer customer;
         private Node next;

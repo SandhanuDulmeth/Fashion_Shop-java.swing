@@ -133,6 +133,30 @@ public static Customer searchCustomer(String id)throws IOException{
         fw.close();
         return true;
     }
+    public static Customer[] getAllCustomersFromFile() throws IOException {
+        ArrayList<Object> customers = new ArrayList<>();
+        BufferedReader br = new BufferedReader(new FileReader("Customer.txt"));
+        String line = br.readLine();
+
+        while (line != null) {
+            String[] rowData = line.split(",");
+            Customer customer = new Customer(
+                    rowData[0],
+                    rowData[1],
+                    rowData[2],
+                    Integer.parseInt(rowData[3]),
+                    Double.parseDouble(rowData[4]),
+                    rowData[5].equals("PROPROCESSING") ? 0 : rowData[5].equals("DELIVERING") ? 1 : 2
+            );
+            customers.add(customer);
+            line = br.readLine();
+        }
+        br.close();
+
+        // Convert the list to an array and return
+        return customers.toArray(new Customer[0]);
+    }
+
 
 
 }

@@ -79,7 +79,8 @@ public class Calculation {
     public String[][] getCustomerReports2DArray() {
         List list=new List();
         int uniqueCount = 0;
-        Customer[] customerArray=list.toArray();
+        //Customer[] customerArray=list.toArray();
+        Customer[] customerArray=list.loadFromFile();
         for (int i = 0; i < list.size(); i++) {
             boolean isUnique = true;
             for (int j = 0; j < i; j++) {
@@ -204,7 +205,7 @@ public class Calculation {
 
     public String[][] getItemReports2DArray() {
         List list=new List();
-        Customer[] customerArray=list.toArray();
+        Customer[] customerArray=list.loadFromFile();
         // [{Size},{XS,S,M,L,XL,XXL-->QTY},{Amount}]
         String[][] ItemReportsDATA = new String[6][3];
 
@@ -344,7 +345,7 @@ public class Calculation {
     ////////////////////////////GET ORDERS REPORTS////////////////////////////////////////////////
     public String[][] getOrdersReports2DArray() {
         List list=new List();
-        Customer[] customerArray= list.toArray();
+        Customer[] customerArray= list.loadFromFile();
 
         String[][] OrdersReports2DArray = new String[customerArray.length][6];
 
