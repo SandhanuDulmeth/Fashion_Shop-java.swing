@@ -508,9 +508,9 @@ class ReportForm {
 
                 }
 
-                //System.out.printf("\t| %-10s | %-12s | %-5s | %-3s | %-8s | %-11s |\n", OrderID, ALLOrderArray[i][1], ALLOrderArray[i][2], ALLOrderArray[i][3], ALLOrderArray[i][4], ALLOrderArray[i][5]);
+               //System.out.printf("\t| %-10s | %-12s | %-5s | %-3s | %-8s | %-11s |\n", OrderID, ALLOrderArray[i][1], ALLOrderArray[i][2], ALLOrderArray[i][3], ALLOrderArray[i][4], ALLOrderArray[i][5]);
                 Object[] rowData = {OrderID, ALLOrderArray[i][1], ALLOrderArray[i][2], ALLOrderArray[i][3], ALLOrderArray[i][4], ALLOrderArray[i][5]};
-               // rowData = {ALLOrderArray[i][0], ALLOrderArray[i][1], ALLOrderArray[i][2], ALLOrderArray[i][3], ALLOrderArray[i][4], ALLOrderArray[i][5]};
+               //Object[] rowData = {ALLOrderArray[i][0], ALLOrderArray[i][1], ALLOrderArray[i][2], ALLOrderArray[i][3], ALLOrderArray[i][4], ALLOrderArray[i][5]};
                 dtm.addRow(rowData);
             }
 
@@ -555,6 +555,7 @@ class ReportForm {
 
 
             String[][] ALLOrderArrayByAmount = calculation.ordersSortByAmount();
+
             String[] columnNames = {"Order ID", " Customer ID ", " Size ", " QTY ", " Amount ", " Status "};
             dtm = new DefaultTableModel(columnNames, 0);
             tblCustomer = new JTable(dtm);
@@ -563,7 +564,7 @@ class ReportForm {
             viewReportOrderByAmountClassFrame.add(tablePane);
             dtm.setRowCount(0);
             List list=new List();
-            Customer[] customerArray=list.toArray();
+            Customer[] customerArray=list.loadFromFile();
             for (int i = 0; i < customerArray.length; i++) {
 
                 int k = Integer.parseInt(ALLOrderArrayByAmount[i][0]);
